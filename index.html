@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="nordic" data-lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TERRAWOOD · WPC Yapı & Dekorasyon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Archivo:wght@300..800&family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300..700&family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Newsreader:opsz,wght@6..72,300..600&family=Oswald:wght@300..700&family=IBM+Plex+Mono:wght@400;500;600&family=Marcellus&family=Mulish:wght@300..800&family=Playfair+Display:wght@400..800&family=Outfit:wght@300..700&family=DM+Serif+Display&family=Karla:wght@300..700&display=swap" rel="stylesheet">
+<style>
+/* ============ THEME TOKENS ============ */
+:root{
+  --bg:#f6f2ec;--surface:#ffffff;--ink:#241f18;--muted:#736a5d;
+  --accent:#b6512b;--accent-2:#3f5a44;--line:rgba(36,31,24,.10);
+  --font-display:'Fraunces',serif;--font-body:'Archivo',sans-serif;
+  --radius:26px;--grain:.022;--soft:0 40px 90px -50px rgba(36,31,24,.45);
+  --maxw:1280px;
+}
+[data-theme="nordic"]{--bg:#f6f2ec;--surface:#fffdf9;--ink:#241f18;--muted:#786e60;--accent:#b6512b;--accent-2:#4a6b52;--line:rgba(36,31,24,.10);--font-display:'Fraunces',serif;--font-body:'Archivo',sans-serif;--radius:26px;--grain:.022}
+[data-theme="architect"]{--bg:#16150f;--surface:#201f17;--ink:#f2ede1;--muted:#a8a08e;--accent:#cba64d;--accent-2:#8b9a82;--line:rgba(242,237,225,.13);--font-display:'Cormorant Garamond',serif;--font-body:'Jost',sans-serif;--radius:22px;--grain:.03;--soft:0 50px 100px -50px rgba(0,0,0,.75)}
+[data-theme="terracotta"]{--bg:#f7ece2;--surface:#fdf7f1;--ink:#3c2419;--muted:#93705f;--accent:#c0562f;--accent-2:#8a4b3a;--line:rgba(60,36,25,.11);--font-display:'Bricolage Grotesque',sans-serif;--font-body:'Newsreader',serif;--radius:24px;--grain:.024}
+[data-theme="industrial"]{--bg:#eceded;--surface:#f9f9f8;--ink:#17191b;--muted:#606569;--accent:#e2531d;--accent-2:#30363a;--line:rgba(23,25,27,.13);--font-display:'Oswald',sans-serif;--font-body:'IBM Plex Mono',monospace;--radius:10px;--grain:.035}
+[data-theme="botanical"]{--bg:#eef1e7;--surface:#fbfcf7;--ink:#1f2a1c;--muted:#63705a;--accent:#4d6b34;--accent-2:#ac7a30;--line:rgba(31,42,28,.11);--font-display:'Marcellus',serif;--font-body:'Mulish',sans-serif;--radius:28px;--grain:.02}
+[data-theme="luxe"]{--bg:#f4efe6;--surface:#faf7f0;--ink:#2c2519;--muted:#82755f;--accent:#9c7a3c;--accent-2:#463a2b;--line:rgba(44,37,25,.11);--font-display:'Playfair Display',serif;--font-body:'Outfit',sans-serif;--radius:18px;--grain:.018}
+[data-theme="coastal"]{--bg:#eaf1f0;--surface:#f9fbfb;--ink:#132826;--muted:#59736c;--accent:#0f7d78;--accent-2:#c98a4b;--line:rgba(19,40,38,.11);--font-display:'DM Serif Display',serif;--font-body:'Karla',sans-serif;--radius:26px;--grain:.02}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .6s ease,color .6s ease}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:var(--grain);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");mix-blend-mode:multiply;transition:opacity .6s}
+h1,h2,h3,h4{font-family:var(--font-display);line-height:1.04;font-weight:600;letter-spacing:-.015em}
+[data-theme="industrial"] h1,[data-theme="industrial"] h2,[data-theme="industrial"] h3{text-transform:uppercase;letter-spacing:.005em}
+[data-theme="luxe"] h1,[data-theme="luxe"] h2,[data-theme="architect"] h1,[data-theme="architect"] h2{font-weight:500}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px}
+.eyebrow{font-family:var(--font-body);font-size:11.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;border-radius:60px;font-family:var(--font-body);font-weight:600;font-size:14px;letter-spacing:.01em;cursor:pointer;border:1px solid transparent;transition:.4s cubic-bezier(.16,1,.3,1);background:var(--accent);color:#fff}
+.btn:hover{transform:translateY(-3px);box-shadow:0 20px 40px -16px var(--accent)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{background:var(--ink);color:var(--bg);box-shadow:none}
+.btn.light{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.btn.light:hover{background:#fff;color:#1a1a1a}
+
+/* ============ THEME SWITCHER ============ */
+.switcher{position:fixed;z-index:1000;right:22px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:13px;padding:15px 13px;border-radius:50px;background:color-mix(in srgb,var(--surface) 78%,transparent);backdrop-filter:blur(18px);border:1px solid var(--line);box-shadow:var(--soft)}
+.switcher .lab{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-align:center;font-weight:700;margin-bottom:2px}
+.sw{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;position:relative;transition:.3s;display:grid;place-items:center}
+.sw i{width:17px;height:17px;border-radius:50%;display:block}
+.sw:hover{transform:scale(1.18)}
+.sw.active{border-color:var(--ink)}
+.sw .tip{position:absolute;right:150%;top:50%;transform:translateY(-50%) translateX(6px);white-space:nowrap;background:var(--ink);color:var(--bg);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;border-radius:30px;opacity:0;pointer-events:none;transition:.25s;font-family:var(--font-body);font-weight:700}
+.sw:hover .tip{opacity:1;transform:translateY(-50%) translateX(0)}
+
+/* ============ HEADER ============ */
+header{position:fixed;top:0;left:0;right:0;z-index:900;transition:.4s}
+header.solid{background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:82px}
+.logo{font-family:var(--font-display);font-size:25px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:11px;color:#fff;transition:.4s}
+header.solid .logo{color:var(--ink)}
+.logo b{color:var(--accent)}
+.logo-mark{width:30px;height:30px;border-radius:9px;background:var(--accent);position:relative;overflow:hidden;flex:none}
+.logo-mark::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.4) 0 2px,transparent 2px 6px)}
+.menu{display:flex;gap:34px;font-size:14px;font-weight:500}
+.menu a{position:relative;padding:4px 0;color:rgba(255,255,255,.85);transition:.25s}
+header.solid .menu a{color:var(--muted)}
+.menu a:hover{color:#fff}
+header.solid .menu a:hover{color:var(--ink)}
+.menu a::after{content:"";position:absolute;left:0;bottom:-3px;width:0;height:2px;background:var(--accent);transition:.3s}
+.menu a:hover::after{width:100%}
+.tools{display:flex;align-items:center;gap:11px}
+.pill{display:flex;border:1px solid rgba(255,255,255,.4);border-radius:40px;overflow:hidden;font-size:12px;font-weight:700}
+header.solid .pill{border-color:var(--line)}
+.pill button{background:transparent;border:none;padding:8px 12px;cursor:pointer;color:rgba(255,255,255,.85);font-family:var(--font-body);font-weight:700;transition:.2s}
+header.solid .pill button{color:var(--muted)}
+.pill button.on{background:#fff;color:#1a1a1a}
+header.solid .pill button.on{background:var(--ink);color:var(--bg)}
+select.cur{border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;border-radius:40px;padding:8px 12px;font-family:var(--font-body);font-weight:700;font-size:12px;cursor:pointer}
+header.solid select.cur{border-color:var(--line);color:var(--ink)}
+select.cur option{color:#1a1a1a}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);animation:heroZoom 14s ease-out forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,12,8,.5) 0%,rgba(15,12,8,.05) 32%,rgba(15,12,8,.35) 68%,rgba(12,9,6,.82) 100%)}
+.hero .wrap{position:relative;z-index:2;color:#fff;padding-bottom:64px;width:100%}
+.hero .eyebrow{color:#fff;opacity:.9}
+.hero h1{font-size:clamp(48px,7vw,104px);font-weight:600;margin:18px 0 24px;max-width:16ch;color:#fff}
+.hero h1 em{font-style:italic;color:#f0c9a0}
+[data-theme="architect"] .hero h1 em,[data-theme="luxe"] .hero h1 em{color:#e6c977}
+.hero p.lead{font-size:clamp(16px,1.5vw,20px);color:rgba(255,255,255,.9);max-width:520px;margin-bottom:34px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero-stats{display:flex;gap:52px;margin-top:52px;padding-top:30px;border-top:1px solid rgba(255,255,255,.22);max-width:640px}
+.hero-stats .s b{font-family:var(--font-display);font-size:clamp(28px,3vw,40px);display:block;line-height:1;color:#fff}
+.hero-stats .s span{font-size:12.5px;color:rgba(255,255,255,.75);letter-spacing:.03em}
+.scroll-hint{position:absolute;right:40px;bottom:40px;z-index:2;color:rgba(255,255,255,.8);font-size:11px;letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-rl;display:flex;align-items:center;gap:12px}
+.scroll-hint::after{content:"";width:1px;height:46px;background:linear-gradient(rgba(255,255,255,.7),transparent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* ============ MARQUEE ============ */
+.certs{border-bottom:1px solid var(--line);overflow:hidden;background:var(--surface)}
+.certs-track{display:flex;gap:0;padding:22px 0;white-space:nowrap;animation:slide 34s linear infinite;font-family:var(--font-display);font-size:19px;color:var(--muted)}
+.certs-track span{display:inline-flex;align-items:center}
+.certs-track b{font-weight:400;padding:0 36px;position:relative}
+.certs-track b::after{content:"◆";color:var(--accent);font-size:9px;position:absolute;right:-4px;top:50%;transform:translateY(-50%)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ============ SECTION SHELL ============ */
+section.block{padding:120px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:56px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(34px,4.4vw,60px)}
+.sec-head p{color:var(--muted);max-width:400px;font-size:15.5px}
+
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.cat{border-radius:var(--radius);overflow:hidden;background:var(--surface);border:1px solid var(--line);transition:.5s cubic-bezier(.16,1,.3,1);cursor:pointer;box-shadow:0 4px 20px -14px rgba(0,0,0,.3)}
+.cat:hover{transform:translateY(-8px);box-shadow:var(--soft)}
+.cat .ph{height:300px;overflow:hidden;position:relative}
+.cat .ph img{width:100%;height:100%;object-fit:cover;transition:.7s cubic-bezier(.16,1,.3,1)}
+.cat:hover .ph img{transform:scale(1.07)}
+.cat .num{position:absolute;top:18px;left:18px;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);color:#fff;font-size:11px;font-weight:700;letter-spacing:.1em;padding:7px 13px;border-radius:30px}
+.cat .body{padding:26px 28px 30px}
+.cat h3{font-size:26px;margin-bottom:8px}
+.cat p{font-size:14px;color:var(--muted);margin-bottom:16px;min-height:42px}
+.cat .go{font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.03em;display:inline-flex;gap:8px;align-items:center;transition:.3s}
+.cat:hover .go{gap:15px}
+
+/* SHOWCASE band (product-focused) */
+.showcase{position:relative}
+.showcase-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+.showcase-media{border-radius:var(--radius);overflow:hidden;box-shadow:var(--soft);aspect-ratio:16/13}
+.showcase-media img{width:100%;height:100%;object-fit:cover}
+.showcase h2{font-size:clamp(32px,4vw,52px);margin:14px 0 20px}
+.showcase p{color:var(--muted);font-size:16px;margin-bottom:22px;max-width:460px}
+.chk{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:30px}
+.chk li{display:flex;gap:14px;align-items:flex-start;font-size:15px}
+.chk .ic{flex:none;width:26px;height:26px;border-radius:50%;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);display:grid;place-items:center;font-size:13px;font-weight:800;margin-top:1px}
+
+/* configurator */
+.config{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface);box-shadow:var(--soft)}
+.config-visual{position:relative;min-height:520px;overflow:hidden}
+.config-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:filter .5s}
+.config-visual .price-fly{position:absolute;left:26px;top:26px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:16px;padding:12px 18px;font-family:var(--font-display);font-size:27px;font-weight:700;color:#1a1a1a;z-index:2}
+.config-visual .stockdot{position:absolute;left:26px;bottom:26px;font-size:12px;font-weight:700;letter-spacing:.05em;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.92);color:#1a1a1a;padding:9px 15px;border-radius:40px;z-index:2}
+.dot{width:9px;height:9px;border-radius:50%;background:#3f8a55;box-shadow:0 0 0 4px rgba(63,138,85,.25)}
+.config-panel{padding:46px 48px}
+.config-panel .kicker{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.config-panel h3{font-size:32px;margin:8px 0 4px}
+.opt-group{margin-top:26px}
+.opt-group label{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:11px}
+.swatches{display:flex;gap:10px;flex-wrap:wrap}
+.chip{padding:10px 17px;border:1px solid var(--line);border-radius:40px;font-size:13px;font-weight:600;cursor:pointer;transition:.25s;background:transparent}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.sel{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.color-chip{width:36px;height:36px;border-radius:50%;border:2px solid var(--line);cursor:pointer;transition:.25s;position:relative}
+.color-chip.sel{border-color:var(--ink);transform:scale(1.12)}
+.color-chip .cn{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:10px;white-space:nowrap;color:var(--muted);opacity:0;transition:.2s}
+.color-chip:hover .cn{opacity:1}
+.config-foot{margin-top:34px;padding-top:26px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px}
+
+/* metraj */
+.calc{display:grid;grid-template-columns:1fr 1.05fr;gap:44px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:52px;box-shadow:var(--soft)}
+.calc-inputs .field{margin-bottom:22px}
+.calc-inputs label{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:9px}
+.calc-inputs input,.calc-inputs select{width:100%;padding:15px 17px;border:1px solid var(--line);border-radius:16px;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;transition:.25s}
+.calc-inputs input:focus,.calc-inputs select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 12%,transparent)}
+.calc-out{background:var(--ink);color:var(--bg);border-radius:calc(var(--radius) - 4px);padding:40px;position:relative;overflow:hidden}
+.calc-out h4{font-family:var(--font-body);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.55;margin-bottom:22px}
+.res-row{display:flex;justify-content:space-between;align-items:baseline;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.res-row:last-of-type{border:none}
+.res-row .k{font-size:13.5px;opacity:.7}
+.res-row .v{font-family:var(--font-display);font-size:29px;font-weight:700}
+.res-total .v{color:color-mix(in srgb,var(--accent) 72%,#fff)}
+
+/* quote + downloads */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:44px;box-shadow:0 4px 24px -18px rgba(0,0,0,.4)}
+.quote-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+.quote-fields .fld{border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:13px;color:var(--muted);background:var(--bg)}
+.quote-fields .fld.full{grid-column:1/-1}
+.upload{border:1.5px dashed var(--line);border-radius:16px;padding:24px;text-align:center;font-size:13px;color:var(--muted);grid-column:1/-1;transition:.25s;cursor:pointer}
+.upload:hover{border-color:var(--accent);color:var(--accent)}
+.dl-list{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+.dl{display:flex;align-items:center;gap:15px;padding:15px 17px;border:1px solid var(--line);border-radius:16px;transition:.3s;cursor:pointer}
+.dl:hover{background:var(--bg);border-color:var(--accent);transform:translateX(4px)}
+.dl .ic{width:42px;height:42px;border-radius:12px;background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent);display:grid;place-items:center;font-size:11.5px;font-weight:800}
+.dl b{font-size:14.5px;display:block}
+.dl span{font-size:12px;color:var(--muted)}
+.dl .arw{margin-left:auto;color:var(--muted);font-size:18px}
+
+/* features */
+.feats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.feat{padding:30px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);transition:.4s}
+.feat:hover{transform:translateY(-5px);box-shadow:var(--soft)}
+.feat .n{font-family:var(--font-display);font-size:15px;color:var(--accent);font-weight:700}
+.feat h4{font-size:20px;margin:14px 0 9px}
+.feat p{font-size:13.5px;color:var(--muted)}
+
+/* CTA */
+.cta-band{position:relative;border-radius:var(--radius);padding:96px 56px;color:#fff;overflow:hidden;text-align:center}
+.cta-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cta-band::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(20,15,10,.86),rgba(20,15,10,.55))}
+.cta-band .in{position:relative;z-index:2}
+.cta-band h2{font-size:clamp(32px,4.4vw,58px);color:#fff;margin-bottom:18px}
+.cta-band p{color:rgba(255,255,255,.85);max-width:540px;margin:0 auto 32px;font-size:16px}
+.cta-band .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* footer */
+footer{padding:80px 0 44px;border-top:1px solid var(--line);background:var(--surface)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:38px}
+.foot-grid h5{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;font-family:var(--font-body);font-weight:700}
+.foot-grid a{display:block;font-size:14px;color:var(--muted);padding:5px 0;transition:.2s}
+.foot-grid a:hover{color:var(--accent)}
+.foot-p{color:var(--muted);font-size:14px;max-width:300px;margin-top:14px}
+.foot-bottom{display:flex;justify-content:space-between;margin-top:52px;padding-top:26px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);flex-wrap:wrap;gap:12px}
+
+.reveal{opacity:0;transform:translateY(34px);transition:1s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:980px){
+  .config,.calc,.split,.foot-grid,.showcase-grid{grid-template-columns:1fr}
+  .cats,.feats{grid-template-columns:1fr 1fr}
+  .menu,.scroll-hint{display:none}
+  .switcher{flex-direction:row;top:auto;bottom:16px;right:50%;transform:translateX(50%);border-radius:50px}
+  .switcher .lab{display:none}.sw .tip{display:none}
+  .calc{padding:34px}.config-panel{padding:34px}
+}
+@media(max-width:600px){.cats,.feats,.quote-fields{grid-template-columns:1fr}.wrap{padding:0 22px}.hero-stats{gap:28px}}
+</style>
+</head>
+<body>
+
+<!-- THEME SWITCHER -->
+<nav class="switcher" aria-label="Tasarım yönü">
+  <span class="lab" data-tr="Yön" data-en="Style">Yön</span>
+  <button class="sw active" data-set="nordic"><i style="background:#b6512b"></i><em class="tip">01 · Nordic Warm</em></button>
+  <button class="sw" data-set="architect"><i style="background:#cba64d"></i><em class="tip">02 · Architect Dark</em></button>
+  <button class="sw" data-set="terracotta"><i style="background:#c0562f"></i><em class="tip">03 · Terracotta Earth</em></button>
+  <button class="sw" data-set="industrial"><i style="background:#e2531d"></i><em class="tip">04 · Industrial Steel</em></button>
+  <button class="sw" data-set="botanical"><i style="background:#4d6b34"></i><em class="tip">05 · Botanical Green</em></button>
+  <button class="sw" data-set="luxe"><i style="background:#9c7a3c"></i><em class="tip">06 · Luxe Bronze</em></button>
+  <button class="sw" data-set="coastal"><i style="background:#0f7d78"></i><em class="tip">07 · Coastal Teal</em></button>
+</nav>
+
+<!-- HEADER -->
+<header id="hdr">
+  <div class="wrap nav">
+    <div class="logo"><span class="logo-mark"></span>TERRA<b>WOOD</b></div>
+    <nav class="menu">
+      <a href="#urunler" data-tr="Ürünler" data-en="Products">Ürünler</a>
+      <a href="#konfig" data-tr="Konfigüratör" data-en="Configurator">Konfigüratör</a>
+      <a href="#metraj" data-tr="Metraj" data-en="Calculator">Metraj</a>
+      <a href="#teklif" data-tr="Teklif Al" data-en="Get Quote">Teklif Al</a>
+      <a href="#teknik" data-tr="Teknik" data-en="Technical">Teknik</a>
+    </nav>
+    <div class="tools">
+      <div class="pill" id="lang"><button class="on" data-l="tr">TR</button><button data-l="en">EN</button></div>
+      <select class="cur" id="cur"><option value="TRY">₺ TRY</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option></select>
+      <a href="#teklif" class="btn light" data-tr="Teklif Al" data-en="Get a Quote">Teklif Al</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="bg" src="assets/u1.jpg" alt="WPC deck terası">
+  <div class="wrap">
+    <span class="eyebrow" data-tr="WPC · Ahşap-Plastik Kompozit" data-en="WPC · Wood-Plastic Composite">WPC · Ahşap-Plastik Kompozit</span>
+    <h1 data-tr="Doğanın dokusu,<br>mühendisliğin <em>dayanıklılığı</em>." data-en="Nature's texture,<br>engineered to <em>endure</em>.">Doğanın dokusu,<br>mühendisliğin <em>dayanıklılığı</em>.</h1>
+    <p class="lead" data-tr="Deck, çit ve duvar paneli sistemlerinde su, güneş ve zamana karşı üretilmiş premium WPC çözümleri. 42 ülkeye ihracat." data-en="Premium WPC systems for decking, fencing and cladding — engineered against water, sun and time. Exported to 42 countries.">Deck, çit ve duvar paneli sistemlerinde su, güneş ve zamana karşı üretilmiş premium WPC çözümleri. 42 ülkeye ihracat.</p>
+    <div class="hero-cta">
+      <a href="#urunler" class="btn" data-tr="Ürünleri Keşfet" data-en="Explore Products">Ürünleri Keşfet</a>
+      <a href="#metraj" class="btn light" data-tr="Metraj Hesapla" data-en="Calculate Area">Metraj Hesapla</a>
+    </div>
+    
+  </div>
+  <div class="scroll-hint" data-tr="Kaydır" data-en="Scroll">Kaydır</div>
+</section>
+
+<!-- CERTS -->
+<div class="certs"><div class="certs-track" id="certTrack"></div></div>
+
+<!-- CATEGORIES -->
+<section class="block" id="urunler">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="eyebrow" data-tr="Ürün Aileleri" data-en="Product Families">Ürün Aileleri</span>
+        <h2 data-tr="Üç sistem,<br>sonsuz proje" data-en="Three systems,<br>endless projects">Üç sistem,<br>sonsuz proje</h2>
+      </div>
+      <p data-tr="Her ürün rengine, ölçüsüne, yüzey tipine ve paket seçeneğine göre yapılandırılabilir." data-en="Every product is configurable by colour, size, finish and packaging.">Her ürün rengine, ölçüsüne, yüzey tipine ve paket seçeneğine göre yapılandırılabilir.</p>
+    </div>
+    <div class="cats">
+      <a href="#konfig" class="cat reveal">
+        <div class="ph"><span class="num">01</span><img src="assets/u4.jpg" alt="Deck" loading="lazy"></div>
+        <div class="body"><h3 data-tr="Deck / Zemin" data-en="Decking">Deck / Zemin</h3><p data-tr="Havuz kenarı, teras ve bahçe için içi dolu & oluklu WPC deck profilleri." data-en="Solid & hollow WPC deck profiles for pool decks, terraces and gardens.">Havuz kenarı, teras ve bahçe için içi dolu & oluklu WPC deck profilleri.</p><span class="go" data-tr="İncele →" data-en="Explore →">İncele →</span></div>
+      </a>
+      <a href="#konfig" class="cat reveal">
+        <div class="ph"><span class="num">02</span><img src="assets/f3.jpg" alt="Fence" loading="lazy"></div>
+        <div class="body"><h3 data-tr="Fence / Çit" data-en="Fencing">Fence / Çit</h3><p data-tr="Bahçe ve sınır çitleri için modüler WPC panel & direk sistemleri." data-en="Modular WPC panel & post systems for garden and boundary fencing.">Bahçe ve sınır çitleri için modüler WPC panel & direk sistemleri.</p><span class="go" data-tr="İncele →" data-en="Explore →">İncele →</span></div>
+      </a>
+      <a href="#konfig" class="cat reveal">
+        <div class="ph"><span class="num">03</span><img src="assets/w4.jpg" alt="Duvar paneli" loading="lazy"></div>
+        <div class="body"><h3 data-tr="Duvar Paneli" data-en="Wall Cladding">Duvar Paneli</h3><p data-tr="İç & dış cephe için kaplama panelleri; akustik ve dekoratif seçenekler." data-en="Cladding panels for interior & façade; acoustic and decorative options.">İç & dış cephe için kaplama panelleri; akustik ve dekoratif seçenekler.</p><span class="go" data-tr="İncele →" data-en="Explore →">İncele →</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section class="block showcase" style="padding-top:0">
+  <div class="wrap showcase-grid">
+    <div class="showcase-media reveal"><img src="assets/u8.jpg" alt="Premium WPC teras"></div>
+    <div class="reveal">
+      <span class="eyebrow" data-tr="CoExtruded 2.0" data-en="CoExtruded 2.0">CoExtruded 2.0</span>
+      <h2 data-tr="Bir ömür boyu<br>bakım gerektirmez" data-en="A lifetime<br>without maintenance">Bir ömür boyu<br>bakım gerektirmez</h2>
+      <p data-tr="Ko-ekstrüzyon kaplama, WPC yüzeyi UV, leke ve çiziklere karşı korur. Boya, cila ya da yıllık bakım yok." data-en="Co-extruded capping shields the WPC surface from UV, stains and scratches. No paint, no oil, no annual upkeep.">Ko-ekstrüzyon kaplama, WPC yüzeyi UV, leke ve çiziklere karşı korur. Boya, cila ya da yıllık bakım yok.</p>
+      <ul class="chk">
+        <li><span class="ic">✓</span><span data-tr="Kaymaz yüzey · havuz ve ıslak alan onaylı" data-en="Anti-slip surface · pool & wet-area approved">Kaymaz yüzey · havuz ve ıslak alan onaylı</span></li>
+        <li><span class="ic">✓</span><span data-tr="%95 geri dönüştürülmüş içerik · FSC® hammadde" data-en="95% recycled content · FSC® raw material">%95 geri dönüştürülmüş içerik · FSC® hammadde</span></li>
+        <li><span class="ic">✓</span><span data-tr="Renk solması < 5 ΔE · 25 yıl garanti" data-en="Colour fade < 5 ΔE · 25-year warranty">Renk solması &lt; 5 ΔE · 25 yıl garanti</span></li>
+      </ul>
+      <a href="#konfig" class="btn" data-tr="Varyasyonları Dene" data-en="Try the Configurator">Varyasyonları Dene</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIGURATOR -->
+<section class="block" id="konfig" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow" data-tr="Canlı Varyasyon" data-en="Live Variation">Canlı Varyasyon</span><h2 data-tr="Seç, anında güncellensin" data-en="Select, updates live">Seç, anında güncellensin</h2></div>
+      <p data-tr="Renk · ölçü · yüzey · paket seçimine göre görsel, fiyat ve stok gerçek zamanlı değişir." data-en="Image, price and stock update in real time as you pick colour, size, finish and pack.">Renk · ölçü · yüzey · paket seçimine göre görsel, fiyat ve stok gerçek zamanlı değişir.</p>
+    </div>
+    <div class="config reveal">
+      <div class="config-visual">
+        <img id="cfgImg" src="assets/u7.jpg" alt="Deck profili">
+        <div class="price-fly" id="cfgPrice">₺1.240</div>
+        <div class="stockdot"><span class="dot"></span><span id="cfgStock" data-tr="Stokta · 3.200 m²" data-en="In stock · 3,200 m²">Stokta · 3.200 m²</span></div>
+      </div>
+      <div class="config-panel">
+        <span class="kicker">TerraDeck · CoExtruded 2.0</span>
+        <h3 data-tr="Oluklu Deck Profili" data-en="Hollow Deck Profile">Oluklu Deck Profili</h3>
+        <div class="opt-group"><label data-tr="Renk" data-en="Colour">Renk</label>
+          <div class="swatches" id="colorGroup">
+            <div class="color-chip sel" data-h="0" style="background:linear-gradient(135deg,#8a5a30,#5f3a1c)"><span class="cn">Teak</span></div>
+            <div class="color-chip" data-h="-45" style="background:linear-gradient(135deg,#4a4d50,#2c2e30)"><span class="cn">Antrasit</span></div>
+            <div class="color-chip" data-h="-25" style="background:linear-gradient(135deg,#8f8b84,#615d57)"><span class="cn">Gri</span></div>
+            <div class="color-chip" data-h="16" style="background:linear-gradient(135deg,#9c4a2c,#6b2f18)"><span class="cn">Kızıl Ceviz</span></div>
+            <div class="color-chip" data-h="34" style="background:linear-gradient(135deg,#cbb48d,#9c8560)"><span class="cn">Fildişi</span></div>
+          </div>
+        </div>
+        <div class="opt-group"><label data-tr="Ölçü (Uzunluk)" data-en="Size (Length)">Ölçü (Uzunluk)</label>
+          <div class="swatches" id="sizeGroup"><div class="chip sel" data-add="0">2200 mm</div><div class="chip" data-add="180">2900 mm</div><div class="chip" data-add="360">3600 mm</div></div>
+        </div>
+        <div class="opt-group"><label data-tr="Yüzey Tipi" data-en="Surface Finish">Yüzey Tipi</label>
+          <div class="swatches" id="finishGroup"><div class="chip sel" data-add="0" data-tr="Fırçalı" data-en="Brushed">Fırçalı</div><div class="chip" data-add="120" data-tr="Kabartma" data-en="Embossed">Kabartma</div><div class="chip" data-add="90" data-tr="Mat" data-en="Matte">Mat</div></div>
+        </div>
+        <div class="opt-group"><label data-tr="Paket" data-en="Packaging">Paket</label>
+          <div class="swatches" id="packGroup"><div class="chip sel" data-mult="1" data-tr="Tekil · 1 m²" data-en="Single · 1 m²">Tekil · 1 m²</div><div class="chip" data-mult="12" data-tr="Paket · 12 m²" data-en="Pack · 12 m²">Paket · 12 m²</div><div class="chip" data-mult="60" data-tr="Palet · 60 m²" data-en="Pallet · 60 m²">Palet · 60 m²</div></div>
+        </div>
+        <div class="config-foot">
+          <div><div style="font-size:11.5px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase" data-tr="Toplam / seçim" data-en="Total / selection">Toplam / seçim</div><div id="cfgTotal" style="font-family:var(--font-display);font-size:32px;font-weight:700">₺1.240</div></div>
+          <a href="#teklif" class="btn" data-tr="Sepete Ekle" data-en="Add to Cart">Sepete Ekle</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRAJ -->
+<section class="block" id="metraj" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><span class="eyebrow" data-tr="Akıllı Modül" data-en="Smart Module">Akıllı Modül</span><h2 data-tr="Metraj hesaplama" data-en="Area calculator">Metraj hesaplama</h2></div>
+      <p data-tr="Deck, fence ve duvar paneli için alanı girin; gerekli ürün, paket sayısı ve tahmini maliyeti anında görün." data-en="Enter your area; get product, pack count and estimated cost instantly.">Deck, fence ve duvar paneli için alanı girin; gerekli ürün, paket sayısı ve tahmini maliyeti anında görün.</p>
+    </div>
+    <div class="calc reveal">
+      <div class="calc-inputs">
+        <div class="field"><label data-tr="Ürün Sistemi" data-en="Product System">Ürün Sistemi</label>
+          <select id="cSys"><option value="deck" data-cov="1" data-price="1240">Deck / Zemin</option><option value="fence" data-cov="1.8" data-price="980">Fence / Çit</option><option value="wall" data-cov="1.2" data-price="1120">Duvar Paneli</option></select></div>
+        <div class="field"><label data-tr="Alan (m²)" data-en="Area (m²)">Alan (m²)</label><input type="number" id="cArea" value="45" min="1"></div>
+        <div class="field"><label data-tr="Fire Payı" data-en="Waste Margin">Fire Payı</label><select id="cWaste"><option value="0.05">%5 · düz alan</option><option value="0.10" selected>%10 · standart</option><option value="0.15">%15 · açılı kesim</option></select></div>
+        <div class="field"><label data-tr="Paket Büyüklüğü" data-en="Pack Size">Paket Büyüklüğü</label><select id="cPack"><option value="12">Paket · 12 m²</option><option value="60" selected>Palet · 60 m²</option></select></div>
+      </div>
+      <div class="calc-out">
+        <h4 data-tr="Tahmini Sonuç" data-en="Estimated Result">Tahmini Sonuç</h4>
+        <div class="res-row"><span class="k" data-tr="Fire dahil alan" data-en="Area incl. waste">Fire dahil alan</span><span class="v" id="rArea">49,5 m²</span></div>
+        <div class="res-row"><span class="k" data-tr="Gerekli profil" data-en="Profiles needed">Gerekli profil</span><span class="v" id="rUnit">225 ad</span></div>
+        <div class="res-row"><span class="k" data-tr="Paket / palet" data-en="Packs / pallets">Paket / palet</span><span class="v" id="rPack">1 palet</span></div>
+        <div class="res-row res-total"><span class="k" data-tr="Tahmini maliyet" data-en="Estimated cost">Tahmini maliyet</span><span class="v" id="rCost">₺61.380</span></div>
+        <a href="#teklif" class="btn" style="width:100%;justify-content:center;margin-top:24px" data-tr="Bu hesapla teklif iste" data-en="Request a quote with this">Bu hesapla teklif iste</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE + DOWNLOADS -->
+<section class="block" id="teklif" style="padding-top:0">
+  <div class="wrap split">
+    <div class="card reveal">
+      <span class="eyebrow" data-tr="Proje Bazlı" data-en="Project Based">Proje Bazlı</span>
+      <h2 style="font-size:36px;margin:10px 0 6px" data-tr="Teklif Al" data-en="Get a Quote">Teklif Al</h2>
+      <p style="color:var(--muted);font-size:14.5px" data-tr="Özel ölçü ve proje ürünleri için form. Kayıtlar panele düşer, e-posta gider, Excel'e aktarılır." data-en="For custom-size and project products. Records saved to panel, emailed, exportable to Excel.">Özel ölçü ve proje ürünleri için form. Kayıtlar panele düşer, e-posta gider, Excel'e aktarılır.</p>
+      <div class="quote-fields">
+        <div class="fld" data-tr="Ad Soyad" data-en="Full name">Ad Soyad</div>
+        <div class="fld" data-tr="Firma / E-posta" data-en="Company / Email">Firma / E-posta</div>
+        <div class="fld" data-tr="Ürün Türü" data-en="Product type">Ürün Türü</div>
+        <div class="fld" data-tr="Ölçü & Miktar" data-en="Size & Quantity">Ölçü & Miktar</div>
+        <div class="fld" data-tr="Renk" data-en="Colour">Renk</div>
+        <div class="fld" data-tr="Teslim İli" data-en="Delivery city">Teslim İli</div>
+        <div class="fld full" data-tr="Proje açıklaması…" data-en="Project description…">Proje açıklaması…</div>
+        <div class="upload" data-tr="⬆ Proje dosyası / çizim yükle · PDF, DWG, JPG" data-en="⬆ Upload project file / drawing · PDF, DWG, JPG">⬆ Proje dosyası / çizim yükle · PDF, DWG, JPG</div>
+      </div>
+      <button class="btn" style="width:100%;justify-content:center" data-tr="Teklif Talebini Gönder" data-en="Submit Quote Request">Teklif Talebini Gönder</button>
+    </div>
+    <div class="card reveal" id="teknik">
+      <span class="eyebrow" data-tr="Her Ürün Sayfasında" data-en="On Every Product Page">Her Ürün Sayfasında</span>
+      <h2 style="font-size:36px;margin:10px 0 6px" data-tr="Teknik Döküman" data-en="Technical Library">Teknik Döküman</h2>
+      <p style="color:var(--muted);font-size:14.5px" data-tr="Teknik çizim, PDF katalog, montaj kılavuzu, sertifika ve uygulama detayları." data-en="Technical drawings, PDF catalogues, install guides, certificates and application details.">Teknik çizim, PDF katalog, montaj kılavuzu, sertifika ve uygulama detayları.</p>
+      <div class="dl-list">
+        <div class="dl"><span class="ic">PDF</span><div><b data-tr="Ürün Kataloğu 2026" data-en="Product Catalogue 2026">Ürün Kataloğu 2026</b><span>18.4 MB · TR / EN</span></div><span class="arw">↓</span></div>
+        <div class="dl"><span class="ic">DWG</span><div><b data-tr="Teknik Çizim Paketi" data-en="Technical Drawing Set">Teknik Çizim Paketi</b><span>CAD · deck & fence</span></div><span class="arw">↓</span></div>
+        <div class="dl"><span class="ic">PDF</span><div><b data-tr="Montaj Kılavuzu" data-en="Installation Guide">Montaj Kılavuzu</b><span data-tr="Adım adım · görsel" data-en="Step by step · visual">Adım adım · görsel</span></div><span class="arw">↓</span></div>
+        <div class="dl"><span class="ic">CE</span><div><b data-tr="Sertifikalar" data-en="Certificates">Sertifikalar</b><span>CE · ISO · ASTM D7032</span></div><span class="arw">↓</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><span class="eyebrow" data-tr="Avantajlar" data-en="Why Us">Avantajlar</span><h2 data-tr="Neden TERRAWOOD?" data-en="Why TERRAWOOD?">Neden TERRAWOOD?</h2></div></div>
+    <div class="feats">
+      <div class="feat reveal"><div class="n">01</div><h4 data-tr="25 Yıl Garanti" data-en="25-Year Warranty">25 Yıl Garanti</h4><p data-tr="Renk solmasına ve yapısal bozulmaya karşı belgeli garanti." data-en="Documented warranty against colour fade and structural failure.">Renk solmasına ve yapısal bozulmaya karşı belgeli garanti.</p></div>
+      <div class="feat reveal"><div class="n">02</div><h4 data-tr="Güvenli Ödeme" data-en="Secure Payment">Güvenli Ödeme</h4><p data-tr="İyzico & PayTR ile kredi kartı, taksit ve havale/EFT seçenekleri." data-en="Credit card, instalments and bank transfer via İyzico & PayTR.">İyzico & PayTR ile kredi kartı, taksit ve havale/EFT.</p></div>
+      <div class="feat reveal"><div class="n">03</div><h4 data-tr="Hızlı Teslimat" data-en="Fast Delivery">Hızlı Teslimat</h4><p data-tr="Paletli sevkiyat, sipariş takibi ve montaj desteği." data-en="Palletised shipping, order tracking and installation support.">Paletli sevkiyat, sipariş takibi ve montaj desteği.</p></div>
+      <div class="feat reveal"><div class="n">04</div><h4 data-tr="Ücretsiz Numune" data-en="Free Samples">Ücretsiz Numune</h4><p data-tr="Renk ve dokuyu sipariş öncesi elinizde görün." data-en="See the colour and texture in hand before you order.">Renk ve dokuyu sipariş öncesi elinizde görün.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <img src="assets/w4.jpg" alt="">
+      <div class="in">
+        <h2 data-tr="Projenizi birlikte<br>hayata geçirelim" data-en="Let's bring your<br>project to life">Projenizi birlikte<br>hayata geçirelim</h2>
+        <p data-tr="İster tek bir teras ister binlerce m²'lik bir proje olsun — ekibimiz ölçü, ücretsiz numune ve teslimat için yanınızda." data-en="Whether it's a single terrace or a project of thousands of m² — our team is with you for measuring, free samples and delivery.">İster tek bir teras ister binlerce m²'lik bir proje olsun — ekibimiz ölçü, ücretsiz numune ve teslimat için yanınızda.</p>
+        <div class="cta-row">
+          <a href="#teklif" class="btn" data-tr="Teklif Al" data-en="Get a Quote">Teklif Al</a>
+          <a href="#teklif" class="btn light" data-tr="Ücretsiz Numune İste" data-en="Request a Free Sample">Ücretsiz Numune İste</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="color:var(--ink);margin-bottom:6px"><span class="logo-mark"></span>TERRA<b>WOOD</b></div>
+        <p class="foot-p" data-tr="WPC yapı & dekorasyon ürünleri üreticisi. Deck, fence, duvar paneli. 42 ülkeye ihracat." data-en="Manufacturer of WPC building & decoration products. Decking, fencing, cladding. Exported to 42 countries.">WPC yapı & dekorasyon ürünleri üreticisi. Deck, fence, duvar paneli. 42 ülkeye ihracat.</p>
+      </div>
+      <div><h5 data-tr="Ürünler" data-en="Products">Ürünler</h5><a>Deck</a><a>Fence</a><a data-tr="Duvar Paneli" data-en="Cladding">Duvar Paneli</a><a data-tr="Aksesuar" data-en="Accessories">Aksesuar</a></div>
+      <div><h5 data-tr="Kurumsal" data-en="Company">Kurumsal</h5><a data-tr="Hakkımızda" data-en="About">Hakkımızda</a><a data-tr="Sürdürülebilirlik" data-en="Sustainability">Sürdürülebilirlik</a><a data-tr="İhracat" data-en="Export">İhracat</a><a data-tr="İletişim" data-en="Contact">İletişim</a></div>
+      <div><h5 data-tr="Destek" data-en="Support">Destek</h5><a data-tr="Teklif Al" data-en="Get Quote">Teklif Al</a><a data-tr="Metraj Hesap" data-en="Area Calc">Metraj Hesap</a><a data-tr="Bayilik" data-en="Dealership">Bayilik</a><a data-tr="Teknik Döküman" data-en="Technical">Teknik Döküman</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 TERRAWOOD WPC. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></span>
+      <span style="display:flex;gap:24px">
+        <a data-tr="Gizlilik" data-en="Privacy">Gizlilik</a>
+        <a data-tr="KVKK" data-en="Data Policy">KVKK</a>
+        <a data-tr="Mesafeli Satış" data-en="Terms of Sale">Mesafeli Satış</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* THEME */
+const names={nordic:'Nordic Warm',architect:'Architect Dark',terracotta:'Terracotta Earth',industrial:'Industrial Steel',botanical:'Botanical Green',luxe:'Luxe Bronze',coastal:'Coastal Teal'};
+document.querySelectorAll('.sw').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.sw').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  const t=b.dataset.set;document.documentElement.setAttribute('data-theme',t);const an=document.getElementById('activeName');if(an)an.textContent=names[t];
+}));
+/* HEADER solid on scroll */
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('solid',scrollY>60));
+/* LANG */
+const langBtns=document.querySelectorAll('#lang button');
+function setLang(l){document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);langBtns.forEach(b=>b.classList.toggle('on',b.dataset.l===l));document.querySelectorAll('[data-'+l+']').forEach(el=>el.innerHTML=el.getAttribute('data-'+l));renderCalc();}
+langBtns.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.l)));
+/* CERTS build */
+const certs=['ISO 9001','CE Certified','ISO 14001','FSC® Mixed','ASTM D7032','REACH','TSE'];
+document.getElementById('certTrack').innerHTML='<span>'+certs.concat(certs).map(c=>'<b>'+c+'</b>').join('')+'</span>';
+/* CURRENCY */
+const rates={TRY:1,USD:1/34,EUR:1/37,GBP:1/43},sym={TRY:'₺',USD:'$',EUR:'€',GBP:'£'};let cur='TRY';
+function fmt(v){const x=v*rates[cur];const s=cur==='TRY'?Math.round(x).toLocaleString('tr-TR'):x.toLocaleString('en-US',{maximumFractionDigits:0});return sym[cur]+s;}
+document.getElementById('cur').addEventListener('change',e=>{cur=e.target.value;renderConfig();renderCalc();});
+/* CONFIGURATOR */
+const base=1240;let sel={hue:0,size:0,finish:0,pack:1};const cfgImg=document.getElementById('cfgImg');
+function renderConfig(){const unit=base+sel.size+sel.finish,total=unit*sel.pack;document.getElementById('cfgPrice').textContent=fmt(unit);document.getElementById('cfgTotal').textContent=fmt(total);cfgImg.style.filter='hue-rotate('+sel.hue+'deg) saturate('+(sel.hue?1.15:1)+')';}
+document.querySelectorAll('#colorGroup .color-chip').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('#colorGroup .color-chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');sel.hue=+c.dataset.h;renderConfig();}));
+function chipGroup(id,key,attr){document.querySelectorAll('#'+id+' .chip').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('#'+id+' .chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');sel[key]=+c.dataset[attr];renderConfig();}));}
+chipGroup('sizeGroup','size','add');chipGroup('finishGroup','finish','add');chipGroup('packGroup','pack','mult');renderConfig();
+/* METRAJ */
+function renderCalc(){const o=document.getElementById('cSys').selectedOptions[0],price=+o.dataset.price,cov=+o.dataset.cov;const area=Math.max(0,+document.getElementById('cArea').value||0),waste=+document.getElementById('cWaste').value,pack=+document.getElementById('cPack').value;const eff=area*(1+waste),units=Math.ceil(eff/0.22),packs=Math.ceil(eff/pack),cost=eff*price/cov;const en=document.documentElement.getAttribute('data-lang')==='en';document.getElementById('rArea').textContent=eff.toLocaleString('tr-TR',{maximumFractionDigits:1})+' m²';document.getElementById('rUnit').textContent=units.toLocaleString('tr-TR')+(en?' pcs':' ad');document.getElementById('rPack').textContent=packs+(pack===60?(en?' pallet':' palet'):(en?' pack':' paket'));document.getElementById('rCost').textContent=fmt(cost);}
+['cSys','cArea','cWaste','cPack'].forEach(id=>document.getElementById(id).addEventListener('input',renderCalc));renderCalc();
+/* REVEAL */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
