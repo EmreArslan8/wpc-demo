@@ -158,14 +158,13 @@ footer{padding:54px 0 40px;border-top:1px solid var(--line);background:var(--sur
     <nav class="menu">
       <a href="products.html" class="active" data-tr="Ürünler" data-en="Products">Ürünler</a>
       <a href="index.html#konfig" data-tr="Konfigüratör" data-en="Configurator">Konfigüratör</a>
-      <a href="index.html#metraj" data-tr="Metraj" data-en="Calculator">Metraj</a>
-      <a href="index.html#teklif" data-tr="Teklif Al" data-en="Get Quote">Teklif Al</a>
+      <a href="index.html#onecikanlar" data-tr="Öne Çıkanlar" data-en="Featured">Öne Çıkanlar</a>
       <a href="index.html#teknik" data-tr="Teknik" data-en="Technical">Teknik</a>
     </nav>
     <div class="tools">
       <div class="pill" id="lang"><button class="on" data-l="tr">TR</button><button data-l="en">EN</button></div>
       <select class="cur" id="cur"><option value="TRY">₺ TRY</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option></select>
-      <a href="index.html#teklif" class="btn" data-tr="Teklif Al" data-en="Get a Quote">Teklif Al</a>
+      <a href="product-detail.html" class="btn" data-tr="Ürün Detayı" data-en="Product Detail">Ürün Detayı</a>
     </div>
   </div>
 </header>
@@ -265,9 +264,9 @@ footer{padding:54px 0 40px;border-top:1px solid var(--line);background:var(--sur
     <div class="cta-band reveal">
       <img src="assets/w4.jpg" alt="">
       <div class="in">
-        <h2 data-tr="Listeyi proje teklifine<br>dönüştürün" data-en="Turn the list into<br>a project quote">Listeyi proje teklifine<br>dönüştürün</h2>
-        <p data-tr="Ürünleri karşılaştırın, metrajı hesaplayın ve proje ölçülerinize göre net teklif isteyin." data-en="Compare products, calculate area and request a precise quote for your project dimensions.">Ürünleri karşılaştırın, metrajı hesaplayın ve proje ölçülerinize göre net teklif isteyin.</p>
-        <a href="index.html#teklif" class="btn" data-tr="Teklif Formuna Git" data-en="Go to Quote Form">Teklif Formuna Git</a>
+        <h2 data-tr="Doğru ürünü seçin,<br>detayda yapılandırın" data-en="Choose the right product,<br>configure it on detail">Doğru ürünü seçin,<br>detayda yapılandırın</h2>
+        <p data-tr="Liste sayfası keşif ve filtreleme içindir. Renk, ölçü, yüzey ve paket seçimi ürün detayında tamamlanır." data-en="The listing page is for discovery and filtering. Colour, size, finish and pack selection are completed on product detail.">Liste sayfası keşif ve filtreleme içindir. Renk, ölçü, yüzey ve paket seçimi ürün detayında tamamlanır.</p>
+        <a href="product-detail.html" class="btn" data-tr="Ürün Detayını Gör" data-en="View Product Detail">Ürün Detayını Gör</a>
       </div>
     </div>
   </div>
@@ -324,7 +323,7 @@ function renderProducts(){
         </div>
         <label class="compare"><input type="checkbox" class="cmp" value="${p.id}"> ${state.lang==='en'?'Compare':'Karşılaştır'}</label>
         <div class="product-foot"><div><div class="price">${fmt(p.price)} <span class="per">/${state.lang==='en'?'m²':'m²'}</span></div></div></div>
-        <div class="product-cta"><a href="product-detail.html" class="btn ghost">${state.lang==='en'?'Details':'Detay'}</a><a href="index.html#teklif" class="btn">${state.lang==='en'?'Quote':'Teklif Al'}</a></div>
+        <div class="product-cta"><a href="product-detail.html" class="btn ghost">${state.lang==='en'?'Details':'Detay'}</a><a href="product-detail.html" class="btn">${state.lang==='en'?'Configure':'Yapılandır'}</a></div>
       </div>
     </article>`).join('');
   const shown=list.length;

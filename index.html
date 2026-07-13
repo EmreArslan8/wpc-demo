@@ -159,28 +159,24 @@ section.block{padding:120px 0}
 .color-chip:hover .cn{opacity:1}
 .config-foot{margin-top:34px;padding-top:26px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px}
 
-/* metraj */
-.calc{display:grid;grid-template-columns:1fr 1.05fr;gap:44px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:52px;box-shadow:var(--soft)}
-.calc-inputs .field{margin-bottom:22px}
-.calc-inputs label{font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:9px}
-.calc-inputs input,.calc-inputs select{width:100%;padding:15px 17px;border:1px solid var(--line);border-radius:16px;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;transition:.25s}
-.calc-inputs input:focus,.calc-inputs select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 12%,transparent)}
-.calc-out{background:var(--ink);color:var(--bg);border-radius:calc(var(--radius) - 4px);padding:40px;position:relative;overflow:hidden}
-.calc-out h4{font-family:var(--font-body);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.55;margin-bottom:22px}
-.res-row{display:flex;justify-content:space-between;align-items:baseline;padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12)}
-.res-row:last-of-type{border:none}
-.res-row .k{font-size:13.5px;opacity:.7}
-.res-row .v{font-family:var(--font-display);font-size:29px;font-weight:700}
-.res-total .v{color:color-mix(in srgb,var(--accent) 72%,#fff)}
+/* product grid + cards */
+.home-products{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.home-product{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 24px -18px rgba(0,0,0,.4);transition:.4s cubic-bezier(.16,1,.3,1)}
+.home-product:hover{transform:translateY(-7px);box-shadow:var(--soft)}
+.home-product .pic{position:relative;aspect-ratio:4/3;overflow:hidden;background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
+.home-product .pic img{width:100%;height:100%;object-fit:cover;transition:.7s cubic-bezier(.16,1,.3,1)}
+.home-product:hover .pic img{transform:scale(1.06)}
+.home-product .tag{position:absolute;left:14px;top:14px;background:rgba(0,0,0,.48);color:#fff;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:7px 10px;border-radius:40px}
+.home-product .info{padding:20px}
+.home-product h3{font-size:23px;margin-bottom:7px}
+.home-product p{color:var(--muted);font-size:13.5px;min-height:44px}
+.home-product .buy-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.home-product .price{font-family:var(--font-display);font-size:25px;font-weight:700;color:var(--accent-2)}
+.home-product .btn{padding:11px 15px;font-size:12px}
 
-/* quote + downloads */
+/* content cards */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:44px;box-shadow:0 4px 24px -18px rgba(0,0,0,.4)}
-.quote-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
-.quote-fields .fld{border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:13px;color:var(--muted);background:var(--bg)}
-.quote-fields .fld.full{grid-column:1/-1}
-.upload{border:1.5px dashed var(--line);border-radius:16px;padding:24px;text-align:center;font-size:13px;color:var(--muted);grid-column:1/-1;transition:.25s;cursor:pointer}
-.upload:hover{border-color:var(--accent);color:var(--accent)}
 .dl-list{display:flex;flex-direction:column;gap:12px;margin-top:24px}
 .dl{display:flex;align-items:center;gap:15px;padding:15px 17px;border:1px solid var(--line);border-radius:16px;transition:.3s;cursor:pointer}
 .dl:hover{background:var(--bg);border-color:var(--accent);transform:translateX(4px)}
@@ -219,14 +215,14 @@ footer{padding:80px 0 44px;border-top:1px solid var(--line);background:var(--sur
 .reveal.in{opacity:1;transform:none}
 
 @media(max-width:980px){
-  .config,.calc,.split,.foot-grid,.showcase-grid{grid-template-columns:1fr}
-  .cats,.feats{grid-template-columns:1fr 1fr}
+  .config,.split,.foot-grid,.showcase-grid{grid-template-columns:1fr}
+  .cats,.feats,.home-products{grid-template-columns:1fr 1fr}
   .menu,.scroll-hint{display:none}
   .switcher{flex-direction:row;top:auto;bottom:16px;right:50%;transform:translateX(50%);border-radius:50px}
   .switcher .lab{display:none}.sw .tip{display:none}
-  .calc{padding:34px}.config-panel{padding:34px}
+  .config-panel{padding:34px}
 }
-@media(max-width:600px){.cats,.feats,.quote-fields{grid-template-columns:1fr}.wrap{padding:0 22px}.hero-stats{gap:28px}}
+@media(max-width:600px){.cats,.feats,.home-products{grid-template-columns:1fr}.wrap{padding:0 22px}.hero-stats{gap:28px}}
 </style>
 </head>
 <body>
@@ -250,14 +246,13 @@ footer{padding:80px 0 44px;border-top:1px solid var(--line);background:var(--sur
     <nav class="menu">
       <a href="products.html" data-tr="Ürünler" data-en="Products">Ürünler</a>
       <a href="#konfig" data-tr="Konfigüratör" data-en="Configurator">Konfigüratör</a>
-      <a href="#metraj" data-tr="Metraj" data-en="Calculator">Metraj</a>
-      <a href="#teklif" data-tr="Teklif Al" data-en="Get Quote">Teklif Al</a>
+      <a href="#onecikanlar" data-tr="Öne Çıkanlar" data-en="Featured">Öne Çıkanlar</a>
       <a href="#teknik" data-tr="Teknik" data-en="Technical">Teknik</a>
     </nav>
     <div class="tools">
       <div class="pill" id="lang"><button class="on" data-l="tr">TR</button><button data-l="en">EN</button></div>
       <select class="cur" id="cur"><option value="TRY">₺ TRY</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option></select>
-      <a href="#teklif" class="btn light" data-tr="Teklif Al" data-en="Get a Quote">Teklif Al</a>
+      <a href="products.html" class="btn light" data-tr="Ürünleri İncele" data-en="View Products">Ürünleri İncele</a>
     </div>
   </div>
 </header>
@@ -271,7 +266,7 @@ footer{padding:80px 0 44px;border-top:1px solid var(--line);background:var(--sur
     <p class="lead" data-tr="Deck, çit ve duvar paneli sistemlerinde su, güneş ve zamana karşı üretilmiş premium WPC çözümleri. 42 ülkeye ihracat." data-en="Premium WPC systems for decking, fencing and cladding — engineered against water, sun and time. Exported to 42 countries.">Deck, çit ve duvar paneli sistemlerinde su, güneş ve zamana karşı üretilmiş premium WPC çözümleri. 42 ülkeye ihracat.</p>
     <div class="hero-cta">
       <a href="products.html" class="btn" data-tr="Ürünleri Keşfet" data-en="Explore Products">Ürünleri Keşfet</a>
-      <a href="#metraj" class="btn light" data-tr="Metraj Hesapla" data-en="Calculate Area">Metraj Hesapla</a>
+      <a href="#konfig" class="btn light" data-tr="Varyasyonları Gör" data-en="View Variations">Varyasyonları Gör</a>
     </div>
     
   </div>
@@ -292,15 +287,15 @@ footer{padding:80px 0 44px;border-top:1px solid var(--line);background:var(--sur
       <p data-tr="Her ürün rengine, ölçüsüne, yüzey tipine ve paket seçeneğine göre yapılandırılabilir." data-en="Every product is configurable by colour, size, finish and packaging.">Her ürün rengine, ölçüsüne, yüzey tipine ve paket seçeneğine göre yapılandırılabilir.</p>
     </div>
     <div class="cats">
-      <a href="#konfig" class="cat reveal">
+      <a href="products.html" class="cat reveal">
         <div class="ph"><span class="num">01</span><img src="assets/u4.jpg" alt="Deck" loading="lazy"></div>
         <div class="body"><h3 data-tr="Deck / Zemin" data-en="Decking">Deck / Zemin</h3><p data-tr="Havuz kenarı, teras ve bahçe için içi dolu & oluklu WPC deck profilleri." data-en="Solid & hollow WPC deck profiles for pool decks, terraces and gardens.">Havuz kenarı, teras ve bahçe için içi dolu & oluklu WPC deck profilleri.</p><span class="go" data-tr="İncele →" data-en="Explore →">İncele →</span></div>
       </a>
-      <a href="#konfig" class="cat reveal">
+      <a href="products.html" class="cat reveal">
         <div class="ph"><span class="num">02</span><img src="assets/f3.jpg" alt="Fence" loading="lazy"></div>
         <div class="body"><h3 data-tr="Fence / Çit" data-en="Fencing">Fence / Çit</h3><p data-tr="Bahçe ve sınır çitleri için modüler WPC panel & direk sistemleri." data-en="Modular WPC panel & post systems for garden and boundary fencing.">Bahçe ve sınır çitleri için modüler WPC panel & direk sistemleri.</p><span class="go" data-tr="İncele →" data-en="Explore →">İncele →</span></div>
       </a>
-      <a href="#konfig" class="cat reveal">
+      <a href="products.html" class="cat reveal">
         <div class="ph"><span class="num">03</span><img src="assets/w4.jpg" alt="Duvar paneli" loading="lazy"></div>
         <div class="body"><h3 data-tr="Duvar Paneli" data-en="Wall Cladding">Duvar Paneli</h3><p data-tr="İç & dış cephe için kaplama panelleri; akustik ve dekoratif seçenekler." data-en="Cladding panels for interior & façade; acoustic and decorative options.">İç & dış cephe için kaplama panelleri; akustik ve dekoratif seçenekler.</p><span class="go" data-tr="İncele →" data-en="Explore →">İncele →</span></div>
       </a>
@@ -362,60 +357,56 @@ footer{padding:80px 0 44px;border-top:1px solid var(--line);background:var(--sur
         </div>
         <div class="config-foot">
           <div><div style="font-size:11.5px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase" data-tr="Toplam / seçim" data-en="Total / selection">Toplam / seçim</div><div id="cfgTotal" style="font-family:var(--font-display);font-size:32px;font-weight:700">₺1.240</div></div>
-          <a href="#teklif" class="btn" data-tr="Sepete Ekle" data-en="Add to Cart">Sepete Ekle</a>
+          <a href="product-detail.html" class="btn" data-tr="Ürün Detayına Git" data-en="Open Product Detail">Ürün Detayına Git</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- METRAJ -->
-<section class="block" id="metraj" style="padding-top:0">
+<!-- FEATURED PRODUCTS -->
+<section class="block" id="onecikanlar" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><span class="eyebrow" data-tr="Akıllı Modül" data-en="Smart Module">Akıllı Modül</span><h2 data-tr="Metraj hesaplama" data-en="Area calculator">Metraj hesaplama</h2></div>
-      <p data-tr="Deck, fence ve duvar paneli için alanı girin; gerekli ürün, paket sayısı ve tahmini maliyeti anında görün." data-en="Enter your area; get product, pack count and estimated cost instantly.">Deck, fence ve duvar paneli için alanı girin; gerekli ürün, paket sayısı ve tahmini maliyeti anında görün.</p>
+      <div><span class="eyebrow" data-tr="Öne Çıkanlar" data-en="Featured Products">Öne Çıkanlar</span><h2 data-tr="En çok tercih edilen WPC ürünler" data-en="Most preferred WPC products">En çok tercih edilen WPC ürünler</h2></div>
+      <p data-tr="Deck, fence, duvar paneli ve tamamlayıcı profiller arasından hızlıca seçim yapın." data-en="Quickly browse decking, fencing, wall cladding and finishing profiles.">Deck, fence, duvar paneli ve tamamlayıcı profiller arasından hızlıca seçim yapın.</p>
     </div>
-    <div class="calc reveal">
-      <div class="calc-inputs">
-        <div class="field"><label data-tr="Ürün Sistemi" data-en="Product System">Ürün Sistemi</label>
-          <select id="cSys"><option value="deck" data-cov="1" data-price="1240">Deck / Zemin</option><option value="fence" data-cov="1.8" data-price="980">Fence / Çit</option><option value="wall" data-cov="1.2" data-price="1120">Duvar Paneli</option></select></div>
-        <div class="field"><label data-tr="Alan (m²)" data-en="Area (m²)">Alan (m²)</label><input type="number" id="cArea" value="45" min="1"></div>
-        <div class="field"><label data-tr="Fire Payı" data-en="Waste Margin">Fire Payı</label><select id="cWaste"><option value="0.05">%5 · düz alan</option><option value="0.10" selected>%10 · standart</option><option value="0.15">%15 · açılı kesim</option></select></div>
-        <div class="field"><label data-tr="Paket Büyüklüğü" data-en="Pack Size">Paket Büyüklüğü</label><select id="cPack"><option value="12">Paket · 12 m²</option><option value="60" selected>Palet · 60 m²</option></select></div>
-      </div>
-      <div class="calc-out">
-        <h4 data-tr="Tahmini Sonuç" data-en="Estimated Result">Tahmini Sonuç</h4>
-        <div class="res-row"><span class="k" data-tr="Fire dahil alan" data-en="Area incl. waste">Fire dahil alan</span><span class="v" id="rArea">49,5 m²</span></div>
-        <div class="res-row"><span class="k" data-tr="Gerekli profil" data-en="Profiles needed">Gerekli profil</span><span class="v" id="rUnit">225 ad</span></div>
-        <div class="res-row"><span class="k" data-tr="Paket / palet" data-en="Packs / pallets">Paket / palet</span><span class="v" id="rPack">1 palet</span></div>
-        <div class="res-row res-total"><span class="k" data-tr="Tahmini maliyet" data-en="Estimated cost">Tahmini maliyet</span><span class="v" id="rCost">₺61.380</span></div>
-        <a href="#teklif" class="btn" style="width:100%;justify-content:center;margin-top:24px" data-tr="Bu hesapla teklif iste" data-en="Request a quote with this">Bu hesapla teklif iste</a>
-      </div>
+    <div class="home-products">
+      <article class="home-product reveal">
+        <div class="pic"><img src="assets/u7.jpg" alt="TerraDeck Oluklu Profil" loading="lazy"><span class="tag" data-tr="Çok satan" data-en="Best seller">Çok satan</span></div>
+        <div class="info"><h3>TerraDeck Oluklu Profil</h3><p data-tr="Teras, havuz kenarı ve bahçe zeminleri için drenajlı deck profili." data-en="Drained decking profile for terraces, pool sides and gardens.">Teras, havuz kenarı ve bahçe zeminleri için drenajlı deck profili.</p><div class="buy-row"><span class="price" id="fp1">₺1.240</span><a class="btn" href="product-detail.html" data-tr="İncele" data-en="View">İncele</a></div></div>
+      </article>
+      <article class="home-product reveal">
+        <div class="pic"><img src="assets/f3.jpg" alt="TerraFence Modüler Panel" loading="lazy"><span class="tag" data-tr="Stokta" data-en="In stock">Stokta</span></div>
+        <div class="info"><h3>TerraFence Modüler Panel</h3><p data-tr="Bahçe sınırları ve villa projeleri için hızlı kurulan panel sistemi." data-en="Fast-install panel system for gardens, boundaries and villa projects.">Bahçe sınırları ve villa projeleri için hızlı kurulan panel sistemi.</p><div class="buy-row"><span class="price" id="fp2">₺980</span><a class="btn" href="product-detail.html" data-tr="İncele" data-en="View">İncele</a></div></div>
+      </article>
+      <article class="home-product reveal">
+        <div class="pic"><img src="assets/w4.jpg" alt="TerraWall Cephe Paneli" loading="lazy"><span class="tag" data-tr="Cephe" data-en="Facade">Cephe</span></div>
+        <div class="info"><h3>TerraWall Cephe Paneli</h3><p data-tr="Dış cephede yatay ve dikey kullanım için UV dayanımlı kaplama." data-en="UV-resistant cladding for horizontal and vertical facade use.">Dış cephede yatay ve dikey kullanım için UV dayanımlı kaplama.</p><div class="buy-row"><span class="price" id="fp3">₺1.120</span><a class="btn" href="product-detail.html" data-tr="İncele" data-en="View">İncele</a></div></div>
+      </article>
+      <article class="home-product reveal">
+        <div class="pic"><img src="assets/u1.jpg" alt="Kenar Bitirme Profili" loading="lazy"><span class="tag" data-tr="Aksesuar" data-en="Accessory">Aksesuar</span></div>
+        <div class="info"><h3>Kenar Bitirme Profili</h3><p data-tr="Deck uygulamalarında temiz bitiş ve kenar koruması için profil." data-en="Finishing profile for clean decking edges and edge protection.">Deck uygulamalarında temiz bitiş ve kenar koruması için profil.</p><div class="buy-row"><span class="price" id="fp4">₺520</span><a class="btn" href="product-detail.html" data-tr="İncele" data-en="View">İncele</a></div></div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- QUOTE + DOWNLOADS -->
-<section class="block" id="teklif" style="padding-top:0">
+<!-- APPLICATIONS + DOWNLOADS -->
+<section class="block" id="teknik" style="padding-top:0">
   <div class="wrap split">
     <div class="card reveal">
-      <span class="eyebrow" data-tr="Proje Bazlı" data-en="Project Based">Proje Bazlı</span>
-      <h2 style="font-size:36px;margin:10px 0 6px" data-tr="Teklif Al" data-en="Get a Quote">Teklif Al</h2>
-      <p style="color:var(--muted);font-size:14.5px" data-tr="Özel ölçü ve proje ürünleri için form. Kayıtlar panele düşer, e-posta gider, Excel'e aktarılır." data-en="For custom-size and project products. Records saved to panel, emailed, exportable to Excel.">Özel ölçü ve proje ürünleri için form. Kayıtlar panele düşer, e-posta gider, Excel'e aktarılır.</p>
-      <div class="quote-fields">
-        <div class="fld" data-tr="Ad Soyad" data-en="Full name">Ad Soyad</div>
-        <div class="fld" data-tr="Firma / E-posta" data-en="Company / Email">Firma / E-posta</div>
-        <div class="fld" data-tr="Ürün Türü" data-en="Product type">Ürün Türü</div>
-        <div class="fld" data-tr="Ölçü & Miktar" data-en="Size & Quantity">Ölçü & Miktar</div>
-        <div class="fld" data-tr="Renk" data-en="Colour">Renk</div>
-        <div class="fld" data-tr="Teslim İli" data-en="Delivery city">Teslim İli</div>
-        <div class="fld full" data-tr="Proje açıklaması…" data-en="Project description…">Proje açıklaması…</div>
-        <div class="upload" data-tr="⬆ Proje dosyası / çizim yükle · PDF, DWG, JPG" data-en="⬆ Upload project file / drawing · PDF, DWG, JPG">⬆ Proje dosyası / çizim yükle · PDF, DWG, JPG</div>
+      <span class="eyebrow" data-tr="Uygulama Alanları" data-en="Applications">Uygulama Alanları</span>
+      <h2 style="font-size:36px;margin:10px 0 6px" data-tr="İç ve dış mekan için WPC çözümleri" data-en="WPC solutions for indoor and outdoor spaces">İç ve dış mekan için WPC çözümleri</h2>
+      <p style="color:var(--muted);font-size:14.5px" data-tr="Ürün seçimini kullanım alanına göre kolaylaştıran sade ve görsel odaklı mağaza deneyimi." data-en="A clean, visual store experience that helps users choose by application area.">Ürün seçimini kullanım alanına göre kolaylaştıran sade ve görsel odaklı mağaza deneyimi.</p>
+      <div class="dl-list">
+        <div class="dl"><span class="ic">01</span><div><b data-tr="Teras ve bahçe" data-en="Terrace and garden">Teras ve bahçe</b><span data-tr="Kaymaz deck profilleri" data-en="Anti-slip decking profiles">Kaymaz deck profilleri</span></div></div>
+        <div class="dl"><span class="ic">02</span><div><b data-tr="Havuz kenarı" data-en="Poolside">Havuz kenarı</b><span data-tr="Suya ve neme dayanıklı yüzey" data-en="Water and humidity resistant surface">Suya ve neme dayanıklı yüzey</span></div></div>
+        <div class="dl"><span class="ic">03</span><div><b data-tr="Dış cephe" data-en="Facade">Dış cephe</b><span data-tr="UV dayanımlı duvar panelleri" data-en="UV-resistant wall cladding">UV dayanımlı duvar panelleri</span></div></div>
+        <div class="dl"><span class="ic">04</span><div><b data-tr="İç mekan dekorasyon" data-en="Interior decoration">İç mekan dekorasyon</b><span data-tr="Lambiri, shiplap ve akustik paneller" data-en="Shiplap, lining and acoustic panels">Lambiri, shiplap ve akustik paneller</span></div></div>
       </div>
-      <button class="btn" style="width:100%;justify-content:center" data-tr="Teklif Talebini Gönder" data-en="Submit Quote Request">Teklif Talebini Gönder</button>
     </div>
-    <div class="card reveal" id="teknik">
+    <div class="card reveal">
       <span class="eyebrow" data-tr="Her Ürün Sayfasında" data-en="On Every Product Page">Her Ürün Sayfasında</span>
       <h2 style="font-size:36px;margin:10px 0 6px" data-tr="Teknik Döküman" data-en="Technical Library">Teknik Döküman</h2>
       <p style="color:var(--muted);font-size:14.5px" data-tr="Teknik çizim, PDF katalog, montaj kılavuzu, sertifika ve uygulama detayları." data-en="Technical drawings, PDF catalogues, install guides, certificates and application details.">Teknik çizim, PDF katalog, montaj kılavuzu, sertifika ve uygulama detayları.</p>
@@ -437,7 +428,7 @@ footer{padding:80px 0 44px;border-top:1px solid var(--line);background:var(--sur
       <div class="feat reveal"><div class="n">01</div><h4 data-tr="25 Yıl Garanti" data-en="25-Year Warranty">25 Yıl Garanti</h4><p data-tr="Renk solmasına ve yapısal bozulmaya karşı belgeli garanti." data-en="Documented warranty against colour fade and structural failure.">Renk solmasına ve yapısal bozulmaya karşı belgeli garanti.</p></div>
       <div class="feat reveal"><div class="n">02</div><h4 data-tr="Güvenli Ödeme" data-en="Secure Payment">Güvenli Ödeme</h4><p data-tr="İyzico & PayTR ile kredi kartı, taksit ve havale/EFT seçenekleri." data-en="Credit card, instalments and bank transfer via İyzico & PayTR.">İyzico & PayTR ile kredi kartı, taksit ve havale/EFT.</p></div>
       <div class="feat reveal"><div class="n">03</div><h4 data-tr="Hızlı Teslimat" data-en="Fast Delivery">Hızlı Teslimat</h4><p data-tr="Paletli sevkiyat, sipariş takibi ve montaj desteği." data-en="Palletised shipping, order tracking and installation support.">Paletli sevkiyat, sipariş takibi ve montaj desteği.</p></div>
-      <div class="feat reveal"><div class="n">04</div><h4 data-tr="Ücretsiz Numune" data-en="Free Samples">Ücretsiz Numune</h4><p data-tr="Renk ve dokuyu sipariş öncesi elinizde görün." data-en="See the colour and texture in hand before you order.">Renk ve dokuyu sipariş öncesi elinizde görün.</p></div>
+      <div class="feat reveal"><div class="n">04</div><h4 data-tr="Renk Seçenekleri" data-en="Colour Options">Renk Seçenekleri</h4><p data-tr="Ahşap dokulu, antrasit, ceviz ve açık ton yüzey alternatifleri." data-en="Wood texture, anthracite, walnut and light surface alternatives.">Ahşap dokulu, antrasit, ceviz ve açık ton yüzey alternatifleri.</p></div>
     </div>
   </div>
 </section>
@@ -448,11 +439,11 @@ footer{padding:80px 0 44px;border-top:1px solid var(--line);background:var(--sur
     <div class="cta-band reveal">
       <img src="assets/w4.jpg" alt="">
       <div class="in">
-        <h2 data-tr="Projenizi birlikte<br>hayata geçirelim" data-en="Let's bring your<br>project to life">Projenizi birlikte<br>hayata geçirelim</h2>
-        <p data-tr="İster tek bir teras ister binlerce m²'lik bir proje olsun — ekibimiz ölçü, ücretsiz numune ve teslimat için yanınızda." data-en="Whether it's a single terrace or a project of thousands of m² — our team is with you for measuring, free samples and delivery.">İster tek bir teras ister binlerce m²'lik bir proje olsun — ekibimiz ölçü, ücretsiz numune ve teslimat için yanınızda.</p>
+        <h2 data-tr="Ürünleri keşfedin,<br>detayda satın alın" data-en="Discover products,<br>buy on detail pages">Ürünleri keşfedin,<br>detayda satın alın</h2>
+        <p data-tr="Ana sayfa marka güveni ve ürün keşfi için tasarlandı. Satın alma aksiyonu ürün detay sayfasında varyasyon seçiminden sonra gelir." data-en="The homepage is designed for brand trust and product discovery. Purchase action comes after variant selection on the product detail page.">Ana sayfa marka güveni ve ürün keşfi için tasarlandı. Satın alma aksiyonu ürün detay sayfasında varyasyon seçiminden sonra gelir.</p>
         <div class="cta-row">
-          <a href="#teklif" class="btn" data-tr="Teklif Al" data-en="Get a Quote">Teklif Al</a>
-          <a href="#teklif" class="btn light" data-tr="Ücretsiz Numune İste" data-en="Request a Free Sample">Ücretsiz Numune İste</a>
+          <a href="products.html" class="btn" data-tr="Ürünleri İncele" data-en="View Products">Ürünleri İncele</a>
+          <a href="product-detail.html" class="btn light" data-tr="Ürün Detayını Gör" data-en="View Product Detail">Ürün Detayını Gör</a>
         </div>
       </div>
     </div>
@@ -469,7 +460,7 @@ footer{padding:80px 0 44px;border-top:1px solid var(--line);background:var(--sur
       </div>
       <div><h5 data-tr="Ürünler" data-en="Products">Ürünler</h5><a>Deck</a><a>Fence</a><a data-tr="Duvar Paneli" data-en="Cladding">Duvar Paneli</a><a data-tr="Aksesuar" data-en="Accessories">Aksesuar</a></div>
       <div><h5 data-tr="Kurumsal" data-en="Company">Kurumsal</h5><a data-tr="Hakkımızda" data-en="About">Hakkımızda</a><a data-tr="Sürdürülebilirlik" data-en="Sustainability">Sürdürülebilirlik</a><a data-tr="İhracat" data-en="Export">İhracat</a><a data-tr="İletişim" data-en="Contact">İletişim</a></div>
-      <div><h5 data-tr="Destek" data-en="Support">Destek</h5><a data-tr="Teklif Al" data-en="Get Quote">Teklif Al</a><a data-tr="Metraj Hesap" data-en="Area Calc">Metraj Hesap</a><a data-tr="Bayilik" data-en="Dealership">Bayilik</a><a data-tr="Teknik Döküman" data-en="Technical">Teknik Döküman</a></div>
+      <div><h5 data-tr="Destek" data-en="Support">Destek</h5><a data-tr="Sipariş Takibi" data-en="Order Tracking">Sipariş Takibi</a><a data-tr="Kargo ve Teslimat" data-en="Shipping">Kargo ve Teslimat</a><a data-tr="Bayilik" data-en="Dealership">Bayilik</a><a data-tr="Teknik Döküman" data-en="Technical">Teknik Döküman</a></div>
     </div>
     <div class="foot-bottom">
       <span>© 2026 TERRAWOOD WPC. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved.">Tüm hakları saklıdır.</span></span>
@@ -494,7 +485,7 @@ const hdr=document.getElementById('hdr');
 addEventListener('scroll',()=>hdr.classList.toggle('solid',scrollY>60));
 /* LANG */
 const langBtns=document.querySelectorAll('#lang button');
-function setLang(l){document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);langBtns.forEach(b=>b.classList.toggle('on',b.dataset.l===l));document.querySelectorAll('[data-'+l+']').forEach(el=>el.innerHTML=el.getAttribute('data-'+l));renderCalc();}
+function setLang(l){document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);langBtns.forEach(b=>b.classList.toggle('on',b.dataset.l===l));document.querySelectorAll('[data-'+l+']').forEach(el=>el.innerHTML=el.getAttribute('data-'+l));}
 langBtns.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.l)));
 /* CERTS build */
 const certs=['ISO 9001','CE Certified','ISO 14001','FSC® Mixed','ASTM D7032','REACH','TSE'];
@@ -502,16 +493,15 @@ document.getElementById('certTrack').innerHTML='<span>'+certs.concat(certs).map(
 /* CURRENCY */
 const rates={TRY:1,USD:1/34,EUR:1/37,GBP:1/43},sym={TRY:'₺',USD:'$',EUR:'€',GBP:'£'};let cur='TRY';
 function fmt(v){const x=v*rates[cur];const s=cur==='TRY'?Math.round(x).toLocaleString('tr-TR'):x.toLocaleString('en-US',{maximumFractionDigits:0});return sym[cur]+s;}
-document.getElementById('cur').addEventListener('change',e=>{cur=e.target.value;renderConfig();renderCalc();});
+function renderFeatured(){[['fp1',1240],['fp2',980],['fp3',1120],['fp4',520]].forEach(([id,price])=>{const el=document.getElementById(id);if(el)el.textContent=fmt(price);});}
+document.getElementById('cur').addEventListener('change',e=>{cur=e.target.value;renderConfig();renderFeatured();});
 /* CONFIGURATOR */
 const base=1240;let sel={hue:0,size:0,finish:0,pack:1};const cfgImg=document.getElementById('cfgImg');
 function renderConfig(){const unit=base+sel.size+sel.finish,total=unit*sel.pack;document.getElementById('cfgPrice').textContent=fmt(unit);document.getElementById('cfgTotal').textContent=fmt(total);cfgImg.style.filter='hue-rotate('+sel.hue+'deg) saturate('+(sel.hue?1.15:1)+')';}
 document.querySelectorAll('#colorGroup .color-chip').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('#colorGroup .color-chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');sel.hue=+c.dataset.h;renderConfig();}));
 function chipGroup(id,key,attr){document.querySelectorAll('#'+id+' .chip').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('#'+id+' .chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');sel[key]=+c.dataset[attr];renderConfig();}));}
 chipGroup('sizeGroup','size','add');chipGroup('finishGroup','finish','add');chipGroup('packGroup','pack','mult');renderConfig();
-/* METRAJ */
-function renderCalc(){const o=document.getElementById('cSys').selectedOptions[0],price=+o.dataset.price,cov=+o.dataset.cov;const area=Math.max(0,+document.getElementById('cArea').value||0),waste=+document.getElementById('cWaste').value,pack=+document.getElementById('cPack').value;const eff=area*(1+waste),units=Math.ceil(eff/0.22),packs=Math.ceil(eff/pack),cost=eff*price/cov;const en=document.documentElement.getAttribute('data-lang')==='en';document.getElementById('rArea').textContent=eff.toLocaleString('tr-TR',{maximumFractionDigits:1})+' m²';document.getElementById('rUnit').textContent=units.toLocaleString('tr-TR')+(en?' pcs':' ad');document.getElementById('rPack').textContent=packs+(pack===60?(en?' pallet':' palet'):(en?' pack':' paket'));document.getElementById('rCost').textContent=fmt(cost);}
-['cSys','cArea','cWaste','cPack'].forEach(id=>document.getElementById(id).addEventListener('input',renderCalc));renderCalc();
+renderFeatured();
 /* REVEAL */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
